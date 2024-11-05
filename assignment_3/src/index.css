@@ -1,0 +1,42 @@
+body > #root > div {
+  height: 100vh;
+}
+
+button {
+  border: none;
+  background-color: white;
+  flex: 1;
+  font-family: inherit;
+  min-width: 7em;
+  min-height: 2.5em;
+  margin: 0 1em 1em 0;
+  transition-duration: 0.2s;
+  border-radius: 1px;
+  font-size: 0.8em;
+  &:hover {
+    background-color: #04AA6D;
+    color: white;
+  }
+  &:active {
+    background-color: #3e8e41;
+    box-shadow: 0 1x #666;
+    transform: translateY(1px);
+  }
+}
+
+body, html {
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
