@@ -15,8 +15,16 @@
   background-image: linear-gradient( #aeaae2, #9791d8);
 }
 
+.clip {
+  height: 40vh;
+}
+
 .container {
   display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 .scroll {
@@ -34,6 +42,7 @@
 }
 
 .separator {
+  flex: 1;
   margin-inline: 2em;
   border-radius: 5em;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -61,7 +70,6 @@
 .item.create {
   background-image: linear-gradient(#44cec7, #8acaca);
   width: 30em;
-  flex: 1;
 }
 
 .item.category {

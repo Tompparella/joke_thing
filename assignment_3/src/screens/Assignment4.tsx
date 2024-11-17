@@ -7,8 +7,8 @@ import { CreateJoke as CreateJokeType } from "../types";
 import { Submitter } from "../constants";
 
 export const Assignment4: FC = () => {
-  const { jokes, categories, tags, region, sendJoke } = useJokes();
-  const { jokes: mongoJokes, sendJoke: sendMongoJoke } = useMongoJokes();
+  const { jokes, categories, tags, region, sendJoke, removeJoke, modifyJoke } = useJokes();
+  const { jokes: mongoJokes, sendJoke: sendMongoJoke, removeJoke: removeMongoJoke, modifyJoke: modifyMongoJoke } = useMongoJokes();
   const onJokeSubmit = useCallback(
     async (value: CreateJokeType, db: Submitter) => {
       try {
@@ -49,12 +49,12 @@ export const Assignment4: FC = () => {
             <Tag key={entry.id + Date.now()} {...entry} />
           ))}
         </div>
-        <div className="container">
+        <div className="container clip">
           <div className="container vertical">
             <span className="title">PostgreSQL Jokes</span>
             <div className="container vertical scroll">
               {jokes.map((entry) => (
-                <Joke key={entry.id + Date.now()} {...entry} />
+                <Joke key={entry.id + Date.now()} {...entry} onDelete={(entry) => removeJoke(entry.id)} onEdit={(entry) => modifyJoke(entry)} />
               ))}
             </div>
           </div>
@@ -63,7 +63,7 @@ export const Assignment4: FC = () => {
             <span className="title">MongoDB Jokes</span>
             <div className="container vertical scroll">
               {mongoJokes.map((entry) => (
-                <Joke key={entry.id + Date.now()} {...entry} />
+                <Joke key={entry.id + Date.now()} {...entry} onDelete={(entry) => removeMongoJoke(entry.id)} onEdit={(entry) => modifyMongoJoke(entry)}  />
               ))}
             </div>
           </div>

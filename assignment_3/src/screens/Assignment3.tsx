@@ -5,7 +5,7 @@ import { Category, Joke, Tag } from "../components";
 import { useJokes } from "../hooks";
 
 export const Assignment3: FC = () => {
-  const { jokes, categories, tags, setRegion } = useJokes();
+  const { jokes, categories, tags, setRegion, removeJoke, modifyJoke } = useJokes();
   return (
     <div className="App">
       <header className="App-header">
@@ -31,9 +31,9 @@ export const Assignment3: FC = () => {
           ))}
         </div>
         <span className="title">Jokes</span>
-        <div className="container">
+        <div className="container wrap">
           {jokes.map((entry) => (
-            <Joke key={entry.id + Date.now()} {...entry} />
+            <Joke key={entry.id + Date.now()} {...entry} onDelete={(entry) => removeJoke(entry.id)} onEdit={modifyJoke} />
           ))}
         </div>
       </div>

@@ -1,17 +1,49 @@
 import { useCallback, useEffect, useState } from "react";
-import { fetchMongo, postMongoJoke } from "../util";
+import { deleteMongoJoke, editMongoJoke, fetchMongo, postMongoJoke } from "../util";
 import { CreateJoke, JokeResponse } from "../types";
 
 export const useMongoJokes = () => {
   const [jokes, setJokes] = useState<JokeResponse[]>([]);
-  const [jokesCreated, setJokesCreated] = useState(0);
+  const [modifications, setModifications] = useState(0);
+
   const sendJoke = useCallback(
     async (value: CreateJoke, region: number) => {
       await postMongoJoke({ ...value, regionId: region });
-      setJokesCreated((prev) => prev + 1); // Trigger refetch
+      setModifications((prev) => prev + 1); // Trigger refetch
     },
-    [setJokesCreated]
+    [setModifications]
   );
+  const removeJoke = useCallback(
+    async (id: number) => {
+      try {
+        await deleteMongoJoke(id);
+        setModifications((prev) => prev + 1); // Trigger refetch
+      } catch (err) {
+        alert(`Failed to edit: ${err}`);
+      }
+    },
+    [setModifications]
+  );
+  const modifyJoke = useCallback(
+    async (value: JokeResponse) => {
+      try {
+        const temp: CreateJoke & {id: number} = {
+          id: value.id,
+          name: value.name,
+          text: value.text,
+          categoryId: value.category.id,
+          tags: value.tags.map(entry => entry.id),
+          regionId: Number.NaN,
+        }
+        await editMongoJoke(temp);
+        setModifications((prev) => prev + 1); // Trigger refetch
+      } catch (err) {
+        alert(`Failed to delete: ${err}`);
+      }
+    },
+    [setModifications]
+  );
+
   useEffect(() => {
     let active = true;
     const stuff = async () => {
@@ -24,6 +56,6 @@ export const useMongoJokes = () => {
     return () => {
       active = false;
     };
-  }, [jokesCreated]);
-  return { jokes, sendJoke };
+  }, [modifications]);
+  return { jokes, sendJoke, modifyJoke, removeJoke };
 };

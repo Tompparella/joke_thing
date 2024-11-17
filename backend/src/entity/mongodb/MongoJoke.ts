@@ -4,7 +4,7 @@ import { Entity, Column, CreateDateColumn, UpdateDateColumn, ObjectIdColumn, Bas
 export class MongoJoke extends BaseEntity {
 
     @ObjectIdColumn()
-    id: number
+    id: string
 
     @Column()
     name: string

@@ -7,7 +7,7 @@ import { Region } from "./Region"
 export class Joke extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    id: number
+    id: string
 
     @Column()
     name: string

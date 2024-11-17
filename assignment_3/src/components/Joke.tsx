@@ -1,8 +1,13 @@
 import { FC } from "react";
 import { JokeResponse } from "../types";
 
+type Callbacks = {
+  onEdit: (value: JokeResponse) => void;
+  onDelete: (value: JokeResponse) => void;
+};
+
 export const Joke: FC<
-  JokeResponse /*  & CategoryResponse & TagResponse[] */
+  JokeResponse & Callbacks
 > = (props) => {
   return (
     <div className="item joke">
@@ -33,6 +38,10 @@ export const Joke: FC<
         <div className="detail">
           <span className="info-title">Updated:</span>
           <span>{new Date(props.updated_at).toLocaleString()}</span>
+        </div>
+        <div className="container">
+        <button onClick={() => props.onEdit(props)}>Edit</button>
+        <button onClick={() => props.onDelete(props)}>Delete</button>
         </div>
       </div>
     </div>
