@@ -2,6 +2,10 @@ body > #root > div {
   height: 100vh;
 }
 
+input {
+  text-align: center;
+}
+
 button {
   border: none;
   background-color: white;
@@ -9,7 +13,7 @@ button {
   font-family: inherit;
   min-width: 7em;
   min-height: 2.5em;
-  margin: 0 1em 1em 0;
+  margin: 0.5em;
   transition-duration: 0.2s;
   border-radius: 1px;
   font-size: 0.8em;

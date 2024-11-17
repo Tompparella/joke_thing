@@ -1,10 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, ManyToMany, JoinTable } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, ManyToMany, JoinTable, BaseEntity } from "typeorm"
 import { Category } from "./Category"
 import { Tag } from "./Tag"
 import { Region } from "./Region"
 
 @Entity()
-export class Joke {
+export class Joke extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number

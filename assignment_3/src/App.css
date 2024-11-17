@@ -19,6 +19,28 @@
   display: flex;
 }
 
+.scroll {
+  overflow-y: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.container.vertical {
+  flex-direction: column;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.separator {
+  margin-inline: 2em;
+  border-radius: 5em;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  width: 0.5em;
+  background-image: linear-gradient(#e342f8, #ee97ff);
+}
+
 .item {
   flex-direction: column;
   justify-content: space-evenly;
@@ -34,6 +56,12 @@
 .item.joke {
   background-image: linear-gradient(#72abec, #4263f8);
   height: 15em;
+}
+
+.item.create {
+  background-image: linear-gradient(#44cec7, #8acaca);
+  width: 30em;
+  flex: 1;
 }
 
 .item.category {
